@@ -63,6 +63,12 @@ function reducer(state, action) {
         highscore:
           state.highscore > state.points ? state.highscore : state.points,
       };
+    case "reset":
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: "ready",
+      };
     default:
       throw new Error("Action unknown");
     // If an unhandled action type is dispatched, I want to be notified immediately
@@ -121,6 +127,7 @@ function App() {
             points={points}
             maxPossiblePoints={maxPossiblePoints}
             highscore={highscore}
+            dispatch={dispatch}
           />
         )}
       </Main>
